@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profissão TI</title>
+    <style>
+        /* CSS BÁSICO - PODE SER PERSONALIZADO PELOS ALUNOS */
+        :root {
+            --primary-color: #28283a;
+            --secondary-color: #3490db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #28283a;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333333;
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Menu hamburger */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #b9297d;
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        .faq {
+            background-color: var(--light-color);
+        }
+        
+        .faq-item {
+            background-color: white;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        .resources {
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .resource-card {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .resource-card a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Profissão TI</div>
+                
+                <!-- Ícone do menu hambúrguer -->
+                <div class="menu-toggle">☰</div>
+                
+                <ul class="nav-links">
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#recursos">Destaque</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#links">Links Úteis</a></li>
+                </ul>
+            </nav>
+            
+            <div class="hero">
+                <h1>Código, Carreira e Liberdade: A Fórmula para Viver de Tecnologia</h1>
+                <p>Não é mágica. É método, prática e estratégia — e você aprende tudo aqui.</p>
+            </div>
+        </div>
+    </header>
+    
+    <section id="sobre">
+        <div class="container">
+            <h2 class="section-title">Profissão TI</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <!-- ALUNOS PODEM TROCAR A IMAGEM -->
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl-N_UBAhTkxOWH7zz9ZHXj_359MKd8kU-3Q&s" alt="Back-End">
+                    <h3>🎓Curso Completo de Back-End (Nível Iniciante ao Intermediário)</h3>
+                    <p>📌 Duração sugerida: 6 a 8 semanas              
+💻 Linguagem principal: JavaScript (Node.js)
+🗃️ Banco de dados: PostgreSQL (ou SQLite para iniciantes)
+🧰 Ferramentas: VS Code, Git, Postman, Render</p>
+                </div>
+                
+                <div class="feature-card">
+                    <!-- ALUNOS PODEM TROCAR A IMAGEM -->
+                    <img src="https://www.ifsudestemg.edu.br/noticias/riopomba/2019/09/desenvolvimento-web-e-mobile-e-tema-de-novo-curso-de-pos-graduacao-lato-sensu/computador.jpg/@@images/f5936e57-7200-4c88-9589-ac64a6d55fe0.jpeg" alt="Front-End">
+                    <h3>🎓 Curso Completo de Front-End (Nível Iniciante ao Intermediário)</h3>
+                    <p>📌 Duração sugerida: 6 a 8 semanas
+🧑‍💻 Linguagens: HTML, CSS, JavaScript, React
+🧰 Ferramentas: VS Code, Git, Figma, Vite/React, Netlify</p>
+                </div>
+                
+                <div class="feature-card">
+                    <!-- ALUNOS PODEM TROCAR A IMAGEM -->
+                    <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/523378-desenvolvimento-web-design-de-aplicacao-codificacao-e-programacao-no-conceito-de-laptop-e-smartphone-com-linguagem-de-programacao-e-codigo-de-programa-e-layout-no-de-tela-vetor.jpg" alt="Full-Stack">
+                    <h3>🎓 Curso Completo de Desenvolvimento Full Stack</h3>
+                    <p>📌 Duração sugerida: 10 a 12 semanas
+💻 Tecnologias:
+Front-End: HTML, CSS, JavaScript, React
+
+Back-End: Node.js, Express, PostgreSQL
+
+Extras: Git, API REST, JWT, Deploy (Netlify + Render)
+
+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="recursos" class="resources">
+        <div class="container">
+            <h2 class="section-title">Segmentos em Destaque</h2>
+            <div class="resource-list">
+                <div class="resource-card">
+                    <h3>Segurança da Informação</h3>
+                    <p>Saiba mais sobre segurança da informação.</p>
+                    <a href="Sub_Temas/Segurança.html" target="_blank">Saiba Mais</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>IA e Machine Learning</h3>
+                    <p>Saiba mais sobre IA e Machine Learning.</p>
+                    <a href="Sub_Temas/IA&ML.html" target="_blank">Saiba Mais</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Desenvolvimento Web</h3>
+                    <p>Saiba mais sobre Desenvolvimento de Software.</p>
+                    <a href="Sub_Temas/Web_Dev.html" target="_blank">Saiba Mais</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Cloud Computing</h3>
+                    <p>Saiba mais sobre Cloud Computing.</p>
+                    <a href="Sub_Temas/Cloud.html" target="_blank">Saiba Mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Quais são as principais áreas de atuação dentro da profissão de TI?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>As principais áreas incluem desenvolvimento de software, redes, segurança da informação, suporte técnico, banco de dados, ciência de dados e computação em nuvem. Cada uma tem foco em diferentes soluções tecnológicas para empresas e usuários.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Quais habilidades técnicas e comportamentais são mais valorizadas no mercado de trabalho em TI atualmente?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Técnicas: programação (como Python, Java), banco de dados, cloud (AWS, Azure), segurança e metodologias ágeis.
+Comportamentais: raciocínio lógico, resolução de problemas, comunicação, proatividade e capacidade de aprender rápido.
+
+</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Como a constante evolução da tecnologia impacta a carreira de um profissional de TI?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>A tecnologia muda rápido, então o profissional precisa se atualizar sempre. Isso exige estudos constantes, mas também abre muitas oportunidades de crescimento e inovação na carreira.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Qual é a diferença entre um desenvolvedor front-end, back-end e full stack?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>O front-end desenvolve o que o usuário vê (interfaces e design).
+O back-end cria a parte lógica, como bancos de dados e servidores.
+O full stack faz ambos e tem uma visão completa do sistema.</p>
+                </div>
+            </div>
+                      
+        </div>
+    </section>
+    
+    <section id="links">
+        <div class="container">
+            <h2 class="section-title">Links de Apoio</h2>
+            <div class="resource-list">
+                <div class="resource-card">
+                    <h3>Guia de Segurança da Informação</h3>
+                    <a href="https://www.ibm.com/br-pt/topics/information-security" target="_blank">IBM</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Sobre IA e Machine Learning</h3>
+                    <a href="https://www.dbccompany.com.br/inteligencia-artificial-e-machine-learning-suas-diferenca-e-como-funcionam-juntas" target="_blank">DBC</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Desenvolvimento Web</h3>
+                    <a href="https://softdesign.com.br/blog/dicionario-de-tecnologias-para-web/" target="_blank">Softdesign</a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section">
+      <h2>Formulário para interessados</h2>
+      <p>Preencha nosso formulário caso tenha interesse em nossos treinamentos!</p>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSft47041LgZEWFvlBH_XNgIPxfH0Z1oQqX70baOFyJPLygpfA/viewform?embedded=true" width="640" height="1503" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Profissão TI - Todos os direitos reservados</p>
+            <p>Landing Page educacional</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para o menu móvel
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Altera o ícone dinamicamente
+            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Fecha o menu ao clicar em um link (opcional)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.textContent = '☰';
+            });
+        });
+
+        // JavaScript para o FAQ
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('.toggle-icon');
+                
+                answer.classList.toggle('active');
+                
+                if (answer.classList.contains('active')) {
+                    icon.textContent = '-';
+                } else {
+                    icon.textContent = '+';
+                }
+            });
+        });
+
+         // Área para os alunos adicionarem mais funcionalidades JavaScript
+        console.log('Os alunos podem adicionar mais scripts aqui para personalizar a página');
+    </script>
+</body>
+</html>
